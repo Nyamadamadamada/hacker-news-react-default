@@ -1,2 +1,3 @@
 # hacker-news-react-default
-Reactのディレクトリ構成を検証するためのデモサイト
+
+React のディレクトリ構成を検証するためのデモサイト
