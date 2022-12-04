@@ -39,6 +39,7 @@ export default function FetchNews() {
   const [text, setText] = useState("");
   const [topNews, setTopNews] = useState<News>(defaultNews);
   const [isLoading, setIsLoading] = useState<boolean>(true); // loading state
+  const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -53,6 +54,7 @@ export default function FetchNews() {
 
       setArticles(data.hits.filter((item: News) => item.url));
       setStories(data.hits.filter((item: News) => item.story_text));
+      setIsLoading(false);
     };
 
     fetchNews();
@@ -97,12 +99,17 @@ export default function FetchNews() {
               />
               <button
                 type="submit"
-                className="rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-pink-400 hover:text-white lg:pb-4 lg:text-4xl"
+                className="flex items-center rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-pink-400 hover:text-white lg:pb-4 lg:text-4xl"
               >
-                Search
+                SEARCH
+                {isLoadingSearch && (
+                  <div className="flex justify-center ml-2">
+                    <div className="animate-spin h-5 w-5 border-2 border-gray-500 rounded-full border-t-transparent"></div>
+                  </div>
+                )}
               </button>
             </form>
-            {/* End of search form */}
+            {/* End of Search form */}
             <div className="container mx-auto mt-10 flex place-items-center px-5 lg:max-w-4xl">
               <div className="border border-white text-gray-900 bg-white px-4 py-2 text-xl font-bold">
                 English

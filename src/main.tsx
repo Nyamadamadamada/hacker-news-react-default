@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/" element={<FetchNews />} />
+        <Route index element={<FetchNews />} />
         <Route path="/ja" element={<FetchNewsJa />} />
         <Route path="*" element={<NotFound />} />
       </Route>
