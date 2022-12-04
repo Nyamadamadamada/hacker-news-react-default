@@ -95,11 +95,11 @@ export default function FetchNews() {
                 required
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                className="mr-5 w-full rounded border border-gray-700 bg-transparent py-2 px-4 text-xl text-gray-200 placeholder-gray-400 outline-none transition-all duration-150 focus:border-gray-600 lg:pb-4 lg:text-4xl"
+                className="mr-5 w-full rounded border border-gray-700 bg-transparent py-2 px-4 text-xl text-gray-200 placeholder-gray-400 outline-none transition-all duration-150 focus:border-gray-600 lg:text-4xl"
               />
               <button
                 type="submit"
-                className="flex items-center rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-pink-400 hover:text-white lg:pb-4 lg:text-4xl"
+                className="flex items-center rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-pink-400 hover:text-white lg:text-4xl"
               >
                 SEARCH
                 {isLoadingSearch && (
