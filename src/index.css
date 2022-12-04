@@ -75,3 +75,20 @@ body {
   border: solid 2px #000;
 }
 /* End of Modal */
+
+/* rndere animetion */
+@keyframes rendered {
+  0% {
+    background-color: rgb(255, 255, 0, 0.3);
+  }
+  100% {
+    background-color: rgb(255, 255, 0, 0);
+  }
+}
+
+div,
+section {
+  animation: rendered 0.6s ease;
+  animation-iteration-count: 1;
+}
+/* End of rndere animetion */

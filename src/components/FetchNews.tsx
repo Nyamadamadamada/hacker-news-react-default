@@ -39,7 +39,6 @@ export default function FetchNews() {
   const [text, setText] = useState("");
   const [topNews, setTopNews] = useState<News>(defaultNews);
   const [isLoading, setIsLoading] = useState<boolean>(true); // loading state
-  const [showModal, setShowModal] = useState<boolean>(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -75,40 +74,6 @@ export default function FetchNews() {
 
   return (
     <div>
-      {showModal && (
-        <div id="modal-overlay">
-          <div id="modal-content" className="text-gray-700 p-10 text-md">
-            <div className="">
-              <h2 className="text-gray-900 text-2xl mb-4">
-                ディレクトリ構成：「未振り分け」
-              </h2>
-              <p className="mb-2">
-                このサイトはReactのディレクトリ構成を検証するための
-                <span className="font-bold">デモサイトです。</span>
-              </p>
-              <p className="mb-6">
-                技術記事のリンクはハッカーニュースのAPIを使用しています。
-              </p>
-              <p className="mb-1">詳しくは下記サイトをご覧ください。</p>
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="text-pink-400 hover:border-b hover:border-pink-400"
-              >
-                改めてReactのディレクトリ構成を検証する【atomicデザイン編】
-              </a>
-            </div>
-            <button
-              onClick={() => setShowModal(false)}
-              className="border border-gray-700 text-gray-900 bg-white mt-5 px-4 py-2 text-md font-bold"
-            >
-              CLOSE
-            </button>
-          </div>
-        </div>
-      )}
-
       <main className="w-full h-full m-auto">
         {isLoading ? (
           <div className="spinner"></div>
@@ -132,7 +97,7 @@ export default function FetchNews() {
               />
               <button
                 type="submit"
-                className="rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-transparent lg:pb-4 lg:text-4xl"
+                className="rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-pink-400 hover:text-white lg:pb-4 lg:text-4xl"
               >
                 Search
               </button>
@@ -178,90 +143,94 @@ export default function FetchNews() {
                 </span>
               </p>
             </article>
+            {articles.length > 0 && (
+              <section className="container mx-auto mt-10">
+                <h3 className="text-center text-white text-3xl font-bold">
+                  ARTICLE
+                </h3>
+                <div className="mx-auto grid grid-cols-1 gap-5 p-5 md:grid-cols-2 lg:max-w-4xl">
+                  {articles.map((item) => {
+                    const { author, created_at, objectID, title, url } = item;
 
-            <section className="container mx-auto mt-10">
-              <h3 className="text-center text-white text-3xl font-bold">
-                ARTICLE
-              </h3>
-              <div className="mx-auto grid grid-cols-1 gap-5 p-5 md:grid-cols-2 lg:max-w-4xl">
-                {articles.map((item) => {
-                  const { author, created_at, objectID, title, url } = item;
-
-                  return (
-                    <article
-                      key={objectID}
-                      className="rounded bg-gray-800 p-3 transition-all duration-150"
-                    >
-                      <h3 className="mb-3 text-lg font-bold text-white">
-                        {title}
-                      </h3>
-                      <article className="">
-                        <div className="flex items-center justify-between">
-                          <p className="text-gray-600">
-                            By <em>{author}</em>
-                          </p>
-                          {url && (
-                            <a
-                              href={url}
-                              target="_blank"
-                              rel="noopenner noreferrer"
-                              className="border-b border-gray-700 text-lg text-gray-400 hover:border-pink-400 hover:text-pink-400"
-                            >
-                              Read More
-                            </a>
-                          )}
-                        </div>
-                      </article>
-                      <p className="mt-10 text-gray-400">
-                        {/* Format date using the `format` method from `date-fns` */}
-                        {format(new Date(created_at), "dd MMM yyyy")}
-                      </p>
-                    </article>
-                  );
-                })}
-              </div>
-            </section>
-            <section className="container mx-auto mt-20">
-              <h3 className="text-center text-white text-3xl font-bold">
-                STORY
-              </h3>
-              <div className="mx-auto grid grid-cols-1 gap-5 p-5 lg:max-w-4xl">
-                {stories.map((item) => {
-                  const { author, created_at, objectID, title, story_text } =
-                    item;
-
-                  return (
-                    <article
-                      key={objectID}
-                      className="rounded bg-gray-800 p-3 transition-all duration-150"
-                    >
-                      <h3 className="mb-3 text-lg font-bold text-white">
-                        {title}
-                      </h3>
-                      <article className="">
-                        {story_text && (
-                          <div
-                            dangerouslySetInnerHTML={createStoryText(
-                              story_text
+                    return (
+                      <article
+                        key={objectID}
+                        className="rounded bg-gray-800 p-3 transition-all duration-150"
+                      >
+                        <h3 className="mb-3 text-lg font-bold text-white">
+                          {title}
+                        </h3>
+                        <article className="">
+                          <div className="flex items-center justify-between">
+                            <p className="text-gray-600">
+                              By <em>{author}</em>
+                            </p>
+                            {url && (
+                              <a
+                                href={url}
+                                target="_blank"
+                                rel="noopenner noreferrer"
+                                className="border-b border-gray-700 text-lg text-gray-400 hover:border-pink-400 hover:text-pink-400"
+                              >
+                                Read More
+                              </a>
                             )}
-                            className="text-lg text-gray-200"
-                          ></div>
-                        )}
-                        <div className="flex items-center justify-between">
-                          <p className="text-gray-600">
-                            By <em>{author}</em>
-                          </p>
-                        </div>
+                          </div>
+                        </article>
+                        <p className="mt-10 text-gray-400">
+                          {/* Format date using the `format` method from `date-fns` */}
+                          {format(new Date(created_at), "dd MMM yyyy")}
+                        </p>
                       </article>
-                      <p className="mt-10 text-gray-400">
-                        {/* Format date using the `format` method from `date-fns` */}
-                        {format(new Date(created_at), "dd MMM yyyy")}
-                      </p>
-                    </article>
-                  );
-                })}
-              </div>
-            </section>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
+            {stories.length > 0 && (
+              <section className="container mx-auto mt-20">
+                <h3 className="text-center text-white text-3xl font-bold">
+                  STORY
+                </h3>
+                <div className="mx-auto grid grid-cols-1 gap-5 p-5 lg:max-w-4xl">
+                  {stories.map((item) => {
+                    const { author, created_at, objectID, title, story_text } =
+                      item;
+
+                    return (
+                      <article
+                        key={objectID}
+                        className="rounded bg-gray-800 p-3 transition-all duration-150"
+                      >
+                        <h3 className="mb-3 text-lg font-bold text-white">
+                          {title}
+                        </h3>
+                        <article className="">
+                          {story_text && (
+                            <div
+                              dangerouslySetInnerHTML={createStoryText(
+                                story_text
+                              )}
+                              className="text-lg text-gray-200"
+                            ></div>
+                          )}
+                          <div className="flex items-center justify-between">
+                            <p className="text-gray-600">
+                              By <em>{author}</em>
+                            </p>
+                          </div>
+                        </article>
+                        <p className="mt-10 text-gray-400">
+                          {/* Format date using the `format` method from `date-fns` */}
+                          {format(new Date(created_at), "dd MMM yyyy")}
+                        </p>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
           </div>
         )}
       </main>

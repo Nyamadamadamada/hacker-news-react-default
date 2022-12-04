@@ -91,7 +91,7 @@ export default function FetchNewsJa() {
               />
               <button
                 type="submit"
-                className="rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-transparent lg:pb-4 lg:text-4xl"
+                className="rounded border border-gray-700 bg-white py-2 px-6 text-xl text-gray-700 transition-all duration-150 hover:bg-pink-400 hover:text-white lg:pb-4 lg:text-4xl"
               >
                 Search
               </button>
