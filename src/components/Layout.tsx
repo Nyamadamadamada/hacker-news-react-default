@@ -11,8 +11,12 @@ const Layout = () => {
   return (
     <div>
       {showModal && (
-        <div id="modal-overlay">
-          <div id="modal-content" className="text-gray-900 p-10 text-md">
+        <div id="modal-overlay" onClick={closeModal}>
+          <div
+            id="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            className="text-gray-900 p-10 text-xl"
+          >
             <div className="">
               <h2 className="text-gray-900 text-2xl mb-4">
                 ディレクトリ構成：「未振り分け」

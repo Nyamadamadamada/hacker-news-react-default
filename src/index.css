@@ -87,8 +87,10 @@ body {
 }
 
 div,
-section {
-  animation: rendered 0.6s ease;
+section,
+article,
+main {
+  animation: rendered 1s ease;
   animation-iteration-count: 1;
 }
 /* End of rndere animetion */

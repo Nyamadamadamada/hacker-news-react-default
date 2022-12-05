@@ -115,7 +115,7 @@ export default function FetchNewsJa() {
                 日本語
               </div>
             </div>
-            <article className="container my-10 mx-auto flex flex-col items-center justify-center px-5 lg:max-w-4xl">
+            <article className="container my-10 mx-auto flex flex-col items-center justify-center px-5 lg:max-w-5xl">
               <h1 className="my-5 text-center text-4xl font-bold text-white lg:text-6xl">
                 {topNews.title}
               </h1>
@@ -132,25 +132,23 @@ export default function FetchNewsJa() {
               {topNews.story_text && (
                 <div
                   dangerouslySetInnerHTML={createStoryText(topNews.story_text)}
-                  className="text-lg text-gray-400 "
+                  className="text-lg text-gray-400"
                 ></div>
               )}
             </article>
 
-            <article className="container mx-auto px-5 lg:max-w-4xl">
-              <p className="text-gray-600">
-                Category:{" "}
-                <span className="font-bold capitalize text-gray-400">
-                  {query}
-                </span>
-              </p>
+            <article className="container mx-auto lg:max-w-5xl">
+              <div className="inline text-gray-600 mr-2">Category:</div>
+              <div className="inline font-bold capitalize text-gray-400">
+                {query}
+              </div>
             </article>
 
             <section className="container mx-auto mt-10">
               <h3 className="text-center text-white text-3xl font-bold">
                 ARTICLE
               </h3>
-              <div className="mx-auto grid grid-cols-1 gap-5 p-5 md:grid-cols-2 lg:max-w-4xl">
+              <div className="mx-auto grid grid-cols-1 gap-5 p-5 lg:grid-cols-2 lg:max-w-5xl">
                 {articles.map((item) => {
                   const { author, created_at, objectID, title, url } = item;
 
